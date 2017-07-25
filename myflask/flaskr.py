@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# all the imports
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -11,7 +10,7 @@ def connect_db():
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory = sqlite3.Row
     return rv
-'''
+
 #创建数据库需要用到的函数 配置config 里面的数据库名字 sqlite3 直接为文件名 python consonl 下执行 from flaskr import init_db ;导入函数 init_db() ;执行函数生成sqlite3 数据库
 def get_db():
     """Opens a new database connection if there is none yet for the
@@ -33,9 +32,10 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
-'''
+
 @app.route('/') #web.route falsk内置装饰器 对应url执行的函数
 def show_entries(): #显示条目，
+    # db = getattr(g, 'sqlite_db', None)
     cur = g.db.execute('select title, text from entries order by id desc')
     entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     print entries,'楚河汉界',cur.fetchall()
