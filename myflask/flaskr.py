@@ -5,13 +5,13 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 app = Flask(__name__)
 app.config.from_pyfile('config.py',silent=True)
+
 def connect_db():
     """Connects to the specific database."""
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory = sqlite3.Row
     return rv
-
-#创建数据库需要用到的函数 配置config 里面的数据库名字 sqlite3 直接为文件名 python consonl 下执行 from flaskr import init_db ;导入函数 init_db() ;执行函数生成sqlite3 数据库
+##创建数据库需要用到的函数 配置config 里面的数据库名字 sqlite3 直接为文件名 python consonl 下执行 from flaskr import init_db ;导入函数 init_db() ;执行函数生成sqlite3 数据库
 def get_db():
     """Opens a new database connection if there is none yet for the
     current application context.
@@ -36,6 +36,7 @@ def init_db():
 @app.route('/') #web.route falsk内置装饰器 对应url执行的函数
 def show_entries(): #显示条目，
     # db = getattr(g, 'sqlite_db', None)
+    g.db = connect_db()
     cur = g.db.execute('select title, text from entries order by id desc')
     entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     print entries,'楚河汉界',cur.fetchall()
@@ -43,6 +44,7 @@ def show_entries(): #显示条目，
 
 @app.route('/add', methods=['POST'])
 def add_entry(): #请求添加条目 http方法 POST
+    g.db = connect_db()
     if not session.get('logged_in'):
         abort(401)
     g.db.execute('insert into entries (title, text) values (?, ?)',
