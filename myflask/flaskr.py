@@ -5,6 +5,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 app = Flask(__name__)
 app.config.from_pyfile('config.py',silent=True)
+app.secret_key = 'cqjuhefu  ' #生成secret——key 必须
 
 def connect_db():
     """Connects to the specific database."""
@@ -74,4 +75,4 @@ def logout():
     return redirect(url_for('show_entries'))
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1',port=80,debug=True)
+    app.run(host='127.0.0.1',port=80,)
