@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>每个表格由 table 标签开始。</p>
+<p>每个表格行由 tr 标签开始。</p>
+<p>每个表格数据由 td 标签开始。</p>
+
+<h4>一列：</h4>
+<table border="1">
+    <tr>
+        <td>td开始</td>
+        <td>100</td>
+    </tr>
+</table>
+
+<!--table 定义一个表格-->
+<!--td 定义为一列 包括里面的内容-->
+<!--tr 定义为一行-->
+
+<h4>一行三列：</h4>
+<table border="1">
+    <tr>
+        <td>100</td>
+        <td>200</td>
+        <td>300</td>
+    </tr>
+</table>
+
+<h4>两行三列：</h4>
+<table border="1">
+    <tr>
+        <td>100</td>
+        <td>200</td>
+        <td>300</td>
+    </tr>
+    <tr>
+        <td>400</td>
+        <td>500</td>
+        <td>600</td>
+    </tr>
+</table>
+
+<!--<H6>表头</H6>-->
+<h4>表头：</h4>
+
+<p>表头由th 定义, 标题由caption定义</p>
+<p>cellspacing 定义单元格之间的间距</p>
+<table border="1"
+       cellspacing="10">
+    <caption>个人信息caption</caption>
+
+    <tr>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>电话</th>
+    </tr>
+    <tr>
+        <td>Bill Gates</td>
+        <td>555 77 854</td>
+        <td>555 77 855</td>
+    </tr>
+</table>
+
+<p>cellpadding="10" 定义单元格间的间距</p>
+
+<table border="1"
+       cellpadding="10">
+    <caption>个人信息caption</caption>
+
+    <tr>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>电话</th>
+    </tr>
+    <tr>
+        <td>Bill Gates</td>
+        <td>555 77 854</td>
+        <td>555 77 855</td>
+    </tr>
+</table>
+
+<h4>垂直的表头：</h4>
+<table border="1">
+    <tr>
+        <th>姓名</th>
+        <td>Bill Gates</td>
+    </tr>
+    <tr>
+        <th>电话</th>
+        <td>555 77 854</td>
+    </tr>
+    <tr>
+        <th>电话</th>
+        <td>555 77 855</td>
+    </tr>
+</table>
+
+</body>
+</html>
