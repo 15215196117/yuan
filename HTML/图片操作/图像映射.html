@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图像映射</title>
+</head>
+<body bgcolor="#deb887">
+
+<table>bgcolor 设置背景颜色
+        background 设置背景图片</table>
+<!--<textarea rows="30" cols="10">-->
+    <!--其他操作 -->
+
+<!--&lt;!&ndash;</textarea>&ndash;&gt;-->
+
+
+<p>请点击图像上的星球，把它们放大。</p>
+
+<img
+        src="http://www.w3school.com.cn/i/eg_planets.jpg"
+        border="0" usemap="#planetmap"
+        alt="Planets" />
+
+<map name="planetmap" id="planetmap">
+
+    <area
+            shape="circle"
+            coords="180,139,14"
+            href ="http://www.w3school.com.cn/example/html/venus.html"
+            target ="_blank"
+            alt="Venus" />
+
+    <area
+            shape="circle"
+            coords="129,161,10"
+            href ="http://www.w3school.com.cn/example/html/mercur.html"
+            target ="_blank"
+            alt="Mercury" />
+
+    <area
+            shape="rect"
+            coords="0,0,110,260"
+            href ="http://www.w3school.com.cn/example/html/sun.html"
+            target ="_blank"
+            alt="Sun" />
+
+</map>
+
+<p><b>注释：</b>img 元素中的 "usemap" 属性引用 map 元素中的 "id" 或 "name" 属性（根据浏览器），所以我们同时向 map 元素添加了 "id" 和 "name" 属性。</p>
+</body>
+</html>

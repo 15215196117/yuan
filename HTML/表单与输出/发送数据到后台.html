@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>submit</title>
+    <style>
+        input[type="text"]
+        {
+            width:150px;
+            display:block;
+            margin-bottom:10px;
+            background-color:yellow;
+            font-family: Verdana, Arial;
+        }
+    </style>
+</head>
+<body>
+<p>submit 提交, action 为你需要提交数据的地址, name 你get请求的参数</p>
+<form action='http://www.w3school.com.cn/demo/demo_form.asp'method="get">
+    城市:<br>
+    <input type="text" name="city" value="">
+    <br>
+    I have a car:
+    <input type="checkbox" name="yuan" value="Car" />
+    <br>
+    <p>文本域可以输入参数,复选框就只能选择固定的参数(是否拥有)</p>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
