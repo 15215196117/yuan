@@ -30,3 +30,8 @@ iptables 设置转发();
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination 122.152.192.99:443 && \
 iptables -t nat -A POSTROUTING -p tcp -m tcp --dport 443 -j SNAT --to-source 192.168.114.3 && \
 service iptables save && service iptables restart
+
+ocserv vpn设置iptables转发：
+sudo iptables -t nat -A POSTROUTING -s 192.168.125.0/24 -o eth0 -j MASQUERADE #192.168.125.0/24 为vpn设置的网段
+sudo iptables -A FORWARD -i vpns+ -j ACCEPT #eth0 为主机外网网卡  vpns+ 为vpn创建得虚拟网卡
+sudo iptables -A FORWARD -o vpns+ -j ACCEPT
