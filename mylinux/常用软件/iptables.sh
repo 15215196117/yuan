@@ -33,5 +33,6 @@ service iptables save && service iptables restart
 
 ocserv vpn设置iptables转发：
 sudo iptables -t nat -A POSTROUTING -s 192.168.125.0/24 -o eth0 -j MASQUERADE #192.168.125.0/24 为vpn设置的网段
+#指定源地址为192.168.125.0/24 的ip地址从eth0出去  -s(soure 源地址) -d(desion 目标地址)
 sudo iptables -A FORWARD -i vpns+ -j ACCEPT #eth0 为主机外网网卡  vpns+ 为vpn创建得虚拟网卡
 sudo iptables -A FORWARD -o vpns+ -j ACCEPT
