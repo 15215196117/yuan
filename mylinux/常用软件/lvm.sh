@@ -74,5 +74,14 @@ mkfs.xfs /dev/mapper/morepay-data #格式化硬盘
 
 
 mount /dev/mapper/morepay-data  /data/
+#/etc/fstab 添加开机挂载项
+        /dev/vda1            /                    ext3       noatime,acl,user_xattr 1 1
+        proc                 /proc                proc       defaults              0 0
+        sysfs                /sys                 sysfs      noauto                0 0
+        debugfs              /sys/kernel/debug    debugfs    noauto                0 0
+        devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
+        /dev/mapper/ronghexx-data       /data   xfs             defaults        0 0 #此处为lvm新增挂载盘
+        10.10.4.2:/data/nfsserver             /data/nfs       nfs     defaults        0 0 #此处是nfs添加的挂载
+
 
 
