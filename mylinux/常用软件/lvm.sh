@@ -41,6 +41,13 @@ vgcreate morepay /dev/vdb #创建VG
               Alloc PE / Size       25599 / <100.00 GiB
               Free  PE / Size       0 / 0
               VG UUID               Y5ech7-Lwsm-bucm-38uB-M3Wy-99pS-6i8de0
+             
+    如果有多块硬盘需要挂载则需要执行如下命令 假设硬盘为  /dev/sdc
+    pvcreate /dev/sdc
+    vgextend morepay /dev/sdc   //vgcreate创建morepay组 vgextend加入组
+    
+    
+             
 
 lvcreate -l 100%VG  -n data morepay #创建LV  -n data 命名为创建的盘为data
               --- Logical volume ---
