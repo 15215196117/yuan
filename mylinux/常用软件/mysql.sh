@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 1.线上拉取备份,并解压到mysql的数据文件目录，
 2.更改用户组和用户，mysql_server_id
 
@@ -22,13 +21,15 @@ python -m SimpleHTTPServer 8080
 wget http://xxxxxxx
 #安装percona工具
 yum install percona-xtrabackup -y
-#恢复数据库
-innobackupex --copy-back /data/backup/xxxxxxx/
+#恢复数据库  下面2步是必须执行的 网上大多数教程都有点问题~~~
+innobackupex --apply-log /data/backup/xxxxxxx
+innobackupex --move-back /data/backup/xxxxxxx/
+#更改my.cnf添加中继日志
+relay_log=/data/mysql/logs/relay-log/relay_log
 #更改数据库目录权限
 chwon -R mysql:mysql /data/mysql
 #启动mysql \
 service mysql start
-
 
 # 配置连接主库  master_log_file和master_log_pos 查找数据库文件目录下的xtrabackup_info
 #比如这里的 cat /data/mysql/data/xtrabackup_info 
@@ -72,4 +73,22 @@ Exec_Master_Log_Pos: 13288408  #执行读取master的pos
 
 
 
+##########################################################分割线#######################################################################
+#主从数据一致检查：
+#pt-table-checksum 用来检查主从数据是否一致 ，pt-table-sync 用来查看主从数据不一致的地方 并执行
+yum install percona-toolkit -y 
 
+先master的ip，用户，密码，然后是slave的ip，用户，密码
+#打印不同
+#--no-bin-log  默认主从架构为了安全，不能执行 需要添加这个参数
+ pt-table-sync --databases=gateway h=10.100.1.216,u=root,p='KbBIHQqhdA9UCGAY' h=172.16.30.113,u=root,p='KbBIHQqhdA9UCGAY' --print --no-bin-log
+#执行不同的sql
+pt-table-sync --databases=xxx h=127.0.0.1,u=root,p=123456 h=192.168.0.20,u=root,p=123456 --execute
+
+#需要设置binlog 日志的格式
+show global variables like 'binlo%'; 
+set global binlog_format=STATEMENT;
+#更改用户授权
+grant all on *.* to gateway@"%" identified by '"53bp2Q"XlguJlk0';
+#更改root连接地址 测试完成后再改过来
+rename user 'root'@'127.0.0.1' to 'root'@'%';
