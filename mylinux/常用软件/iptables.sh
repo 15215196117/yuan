@@ -31,6 +31,8 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443 -j DNAT --to-destination
 iptables -t nat -A POSTROUTING -p tcp -m tcp --dport 443 -j SNAT --to-source 192.168.114.3 && \
 service iptables save && service iptables restart
 
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+
 ocserv vpn设置iptables转发：
 sudo iptables -t nat -A POSTROUTING -s 192.168.125.0/24 -o eth0 -j MASQUERADE #192.168.125.0/24 为vpn设置的网段
 #指定源地址为192.168.125.0/24 的ip地址从eth0出去  -s(soure 源地址) -d(desion 目标地址)
