@@ -7,3 +7,7 @@ svn st webapps #查看版本控制的文件，配置文件等
 svn up -r {版本号} 更新到指定版本
 
 INSERT INTO services (project_name, net_type, host_port, docker_port, mount, health, pod, env, registry, description) VALUES (project_name=cashier, net_type=link, host_port=6080, docker_port=8080, mount=, health=, pod=, env=1, registry=registry-dev.morepay.cn/morepay/qlk-web-cashier:4522 description=)
+
+#svn 切换
+ svn sw '新svn地址' webapps
+ #svn switch --relocate  'svn旧地址'  'svn新地址' webapps
