@@ -92,3 +92,8 @@ set global binlog_format=STATEMENT;
 grant all on *.* to gateway@"%" identified by '"53bp2Q"XlguJlk0';
 #更改root连接地址 测试完成后再改过来
 rename user 'root'@'127.0.0.1' to 'root'@'%';
+
+
+########cetnos7 安装mysql5.6
+yum install http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+yum repolist enabled | grep "mysql.*-community.*"
